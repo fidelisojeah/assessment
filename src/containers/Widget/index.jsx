@@ -3,7 +3,9 @@ import { Form, withFormik } from 'formik';
 
 import PropTypes from 'prop-types';
 import { ReactComponent as Location } from '<assets>/location.svg';
-import { Input, DateInput } from '<components>';
+import { ReactComponent as AirPlane } from '<assets>/airplane.svg';
+import { Input, DateInput, Button } from '<components>';
+import airports from '<assets>/airports.json';
 
 import { Wrapper, WidgetComponent, FormContainer, FormRow, FormColumn } from './style';
 
@@ -25,31 +27,42 @@ class Widget extends PureComponent {
                     <Form onSubmit={handleSubmit}>
                         <FormContainer>
                             <div>
-                                {/* <FormFields> */}
                                 <FormRow>
                                     <FormColumn>
                                         <Input
                                             type="search"
-                                            name="origin"
+                                            name="originLocation"
                                             placeholder="Your Location"
                                             prefix={<Location />}
+                                            dropdownChildren={airports}
                                         />
                                     </FormColumn>
                                     <FormColumn>
                                         <Input
                                             type="search"
-                                            name="destination"
+                                            name="destinationLocation"
                                             placeholder="Your Destination"
-                                            prefix={<Location />}
+                                            prefix={<AirPlane />}
+                                            dropdownChildren={(
+                                                <div style={{ padding: '18px' }}>
+                                                    Please Enter Airport Information
+                                                </div>
+                                            )}
                                         />
                                     </FormColumn>
                                 </FormRow>
                                 <FormRow>
-                                    <FormColumn>
+                                    <FormColumn noMarg>
                                         <DateInput hasReturn={tripType !== 1} />
                                     </FormColumn>
                                 </FormRow>
-                                {/* </FormFields> */}
+                                <FormRow>
+                                    <FormColumn>
+                                        <Button size="large" fullWidth>
+                                            Find
+                                        </Button>
+                                    </FormColumn>
+                                </FormRow>
                             </div>
                         </FormContainer>
                     </Form>
@@ -61,8 +74,8 @@ class Widget extends PureComponent {
 
 export default withFormik({
     mapPropsToValues: () => ({
-        origin: '',
-        destination: '',
+        originLocation: '',
+        destinationLocation: '',
         departureDate: new Date(),
         returnDate: null,
         numberPassegners: 1

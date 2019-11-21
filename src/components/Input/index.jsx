@@ -21,6 +21,8 @@ function InputComponent({ type, field, setFocus }) {
                     type="search"
                     autoComplete="off"
                     autoFill="off"
+                    autocorrect="off"
+                    spellcheck="false"
                     {...field}
                     value={field.value || ''}
                 />
@@ -45,14 +47,14 @@ function RenderMenu({ dropdownChildren, form, field, setFocus }) {
     if (Array.isArray(dropdownChildren)) {
         return dropdownChildren.map(eachChild => (
             <div
-                key={eachChild.code}
+                key={eachChild.value}
                 role="presentation"
                 className="list"
-                onClick={event => onClick(event, eachChild.airport)}
+                onClick={event => onClick(event, eachChild.label)}
             >
                 <div className="city">
                     <div className="label nested">
-                        {eachChild.code} {eachChild.airport}
+                        {eachChild.value} {eachChild.label}
                     </div>
                 </div>
             </div>

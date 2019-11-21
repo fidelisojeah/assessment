@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -35,16 +36,33 @@ export const InputContainer = styled.div`
         css`
             border: 1px solid ${theme.colors.error};
         `}
+        .date-picker{
+            flex: 1;
+            margin: 10px;
+            ${({ theme }) =>
+                theme.media.tablet(
+                    css`
+                        margin: 0;
+                    `
+                )}
+        }
         .react-datepicker{
             font-family: 'Open Sans', Arial;
             font-size: ${({ theme }) => theme.fontSizes.xsmall};
             border: 1px solid #cccccc;
             border-radius: 0;
             padding: 15px 5px;
+            flex: 1;
             box-shadow: {({theme})=>theme.shadows.small};
         }
         .react-datepicker__month-container{
             margin: 0 5px;
+            ${({ theme }) =>
+                theme.media.ipad(
+                    css`
+                        float: none;
+                    `
+                )}
         }
     .react-datepicker-popper {
         z-index: 60;
@@ -118,9 +136,9 @@ export const Prefix = styled.div`
     justify-content: center;
     > svg,
     > i {
-        width: 30px;
-        height: 30px;
-        color: ${({ theme }) => theme.palette.dark};
+        width: 25px;
+        height: 25px;
+        color: ${({ theme }) => theme.palette.light};
     }
 `;
 
@@ -162,7 +180,7 @@ export const StyledInput = styled.input`
     &:active {
         outline: none;
         border: none;
-        box-shadow: 0 0 5px 2px ${({ theme }) => theme.palette.dark};
+        box-shadow: inset 0 0 5px 1px ${({ theme }) => theme.palette.light};
     }
 `;
 
@@ -176,7 +194,8 @@ export const StyledDropdownContainer = styled.div`
     position: absolute;
     z-index: 45;
     left: 0px;
-    border-radius: 2px;
+    margin-top: 10px;
+    border-radius: 0;
     transition: opacity 0.1s ease;
     box-shadow: ${({ theme }) => theme.shadows.evident};
     .list {

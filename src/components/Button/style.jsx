@@ -49,7 +49,8 @@ export const StyledButton = styled.button`
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     transition: all 0.15s ease-in-out !important;
     outline: 0;
-    border-width: ${({ secondary }) => (!secondary ? 0 : '4px')};
+    border-width: ${({ secondary }) => (!secondary ? 0 : '2px')};
+    border-color: ${({ secondary, theme }) => (!secondary ? 'none' : theme.palette.primary)};
     &:hover {
         background: ${({ disabled, secondary, theme }) =>
             !disabled && (secondary ? theme.palette.primary : theme.colors.primaryHovered)};
@@ -58,7 +59,7 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledButtonContent = styled.div`
-    visibility: ${({ loading }) => loading && 'hidden'};
+    ${({ isLoading }) => isLoading && 'visibility: hidden'};
     height: 100%;
     display: flex;
     flex-basis: 100%;

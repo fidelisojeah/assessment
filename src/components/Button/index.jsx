@@ -5,11 +5,12 @@ import { StyledButton, StyledButtonContent, IconContainer } from './style';
 
 function Button({
     onClick,
-    loading,
+    isLoading,
     leftIcon,
     secondary,
     children,
     rightIcon,
+    size,
     fullWidth,
     width,
     disabled,
@@ -23,9 +24,10 @@ function Button({
             disabled={disabled}
             width={width}
             fullWidth={fullWidth}
+            size={size}
         >
-            {loading && null}
-            <StyledButtonContent loading={loading}>
+            {isLoading && null}
+            <StyledButtonContent isLoading={isLoading}>
                 {leftIcon && <IconContainer secondary={secondary}>{leftIcon}</IconContainer>}
                 <div style={{ display: 'inline-block' }}>{children}</div>
                 {rightIcon && (
@@ -44,7 +46,8 @@ Button.propTypes = {
     rightIcon: PropTypes.node,
     width: PropTypes.number,
     className: PropTypes.string,
-    loading: PropTypes.bool,
+    size: PropTypes.string,
+    isLoading: PropTypes.bool,
     fullWidth: PropTypes.bool,
     disabled: PropTypes.bool,
     children: PropTypes.node.isRequired,
@@ -55,10 +58,11 @@ Button.defaultProps = {
     leftIcon: null,
     rightIcon: null,
     width: 0,
+    size: 'large',
     secondary: false,
     disabled: false,
     fullWidth: false,
-    loading: false,
+    isLoading: false,
     className: ''
 };
 export default React.memo(Button);

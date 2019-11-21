@@ -18,8 +18,8 @@ const CustomInput = forwardRef(CustomDateInput);
 
 function DateInputComponent({ form, hasReturn, disabled, hasPrefix }) {
     return (
-        <div style={{ position: 'relative' }}>
-            <InputContainer disabled={disabled}>
+        <InputContainer disabled={disabled}>
+            <div className="date-picker">
                 {hasPrefix && (
                     <Prefix>
                         <CalendarIcon />
@@ -37,9 +37,8 @@ function DateInputComponent({ form, hasReturn, disabled, hasPrefix }) {
                     customInput={<CustomInput />}
                     endDate={form.values.returnDate}
                 />
-            </InputContainer>
-
-            <InputContainer disabled={disabled}>
+            </div>
+            <div className="date-picker">
                 {hasPrefix && (
                     <Prefix>
                         <CalendarIcon />
@@ -60,8 +59,8 @@ function DateInputComponent({ form, hasReturn, disabled, hasPrefix }) {
                     endDate={form.values.returnDate}
                     rangeisEnd
                 />
-            </InputContainer>
-        </div>
+            </div>
+        </InputContainer>
     );
 }
 
